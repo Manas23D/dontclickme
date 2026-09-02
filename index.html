@@ -6,7 +6,461 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>NOOOO 😭</title>
+<body>
 
+    <div class="container">
+
+        <h1>NOOOO 😭</h1>
+
+        <p class="subtitle">
+            I TOLD YOU NOT TO CLICK ANYTHING...
+        </p>
+
+        <div class="warning">
+            🚨 YOU CAN'T CLICK ME 🚨
+        </div>
+
+        <!-- Fake GIF / Reaction -->
+        <div class="gif-box">
+
+            <div class="cry">😭</div>
+
+            <div class="gif-text">
+                NOOOOOOO!!!
+            </div>
+
+            <p style="margin-top:15px;color:#aaa;">
+                *dramatic crying intensifies*
+            </p>
+
+        </div>
+
+
+        <div class="message">
+
+            <h2>
+                👻 Why are you still trying?
+            </h2>
+
+            <p>
+                There is absolutely nothing interesting here.
+                <br>
+                Seriously. Go away. 😂
+            </p>
+
+        </div>
+
+
+        <!-- RUNAWAY BUTTON -->
+
+        <div class="button-area">
+
+            <button id="prankButton">
+                CLICK ME IF YOU DARE 😈
+            </button>
+
+        </div>
+
+        <div class="attempts">
+            Attempts: <span id="attemptCount">0</span>
+        </div>
+
+
+        <!-- MUSIC -->
+
+        <audio id="prankSong" loop>
+            <source src="prank-song.mp3" type="audio/mpeg">
+        </audio>
+
+        <button id="musicButton">
+            🎵 PLAY SONG
+        </button>
+
+
+        <footer>
+            Made with ❤️ for maximum frustration 😈
+            <br><br>
+            This is just a prank website.
+        </footer>
+
+    </div>
+
+
+    <!-- GOTCHA POPUP -->
+
+    <div id="popup">
+
+        <div class="popup-content">
+
+            <h2>
+                GOTCHA! 😂
+            </h2>
+
+            <p>
+                You actually thought that button would work?
+                <br><br>
+                NOOOOOOO 😭
+            </p>
+
+            <button class="close" onclick="closePopup()">
+                Okay... 😭
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MUSIC BUTTON STYLE -->
+
+    <style>
+
+        #musicButton {
+
+            position: fixed;
+
+            bottom: 20px;
+            right: 20px;
+
+            padding: 12px 18px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #ff1744;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 1001;
+
+            box-shadow:
+                0 0 15px #ff1744;
+
+        }
+
+        #musicButton:hover {
+
+            transform: scale(1.08);
+
+        }
+
+    </style>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const button =
+            document.getElementById("prankButton");
+
+        const area =
+            document.querySelector(".button-area");
+
+        const counter =
+            document.getElementById("attemptCount");
+
+        const popup =
+            document.getElementById("popup");
+
+        const song =
+            document.getElementById("prankSong");
+
+        const musicButton =
+            document.getElementById("musicButton");
+
+
+        let attempts = 0;
+
+
+        /* =========================
+           RUNAWAY BUTTON
+        ========================= */
+
+        function moveButton() {
+
+            attempts++;
+
+            counter.textContent = attempts;
+
+
+            const areaRect =
+                area.getBoundingClientRect();
+
+            const buttonRect =
+                button.getBoundingClientRect();
+
+
+            const maxX =
+                areaRect.width -
+                buttonRect.width -
+                10;
+
+            const maxY =
+                areaRect.height -
+                buttonRect.height -
+                10;
+
+
+            const x =
+                Math.max(
+                    10,
+                    Math.random() * maxX
+                );
+
+            const y =
+                Math.max(
+                    10,
+                    Math.random() * maxY
+                );
+
+
+            button.style.left =
+                x + "px";
+
+            button.style.top =
+                y + "px";
+
+            button.style.transform =
+                "none";
+
+
+            document.body.classList.add(
+                "shake-screen"
+            );
+
+
+            setTimeout(() => {
+
+                document.body.classList.remove(
+                    "shake-screen"
+                );
+
+            }, 400);
+
+
+            if (attempts >= 7) {
+
+                button.textContent =
+                    "OKAY FINE 😭";
+
+            }
+
+        }
+
+
+        /* Desktop */
+
+        button.addEventListener(
+            "mouseenter",
+            moveButton
+        );
+
+
+        /* Mobile */
+
+        button.addEventListener(
+            "touchstart",
+            function(e) {
+
+                e.preventDefault();
+
+                moveButton();
+
+            }
+        );
+
+
+        /* =========================
+           IF THEY CATCH IT
+        ========================= */
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                attempts++;
+
+                counter.textContent =
+                    attempts;
+
+
+                // START MUSIC
+
+                song.play().catch(() => {
+
+                    console.log(
+                        "Browser blocked autoplay."
+                    );
+
+                });
+
+
+                musicButton.textContent =
+                    "🔇 STOP SONG";
+
+
+                showPopup();
+
+                createConfetti();
+
+            }
+        );
+
+
+        /* =========================
+           POPUP
+        ========================= */
+
+        function showPopup() {
+
+            popup.style.display =
+                "flex";
+
+        }
+
+
+        function closePopup() {
+
+            popup.style.display =
+                "none";
+
+        }
+
+
+        /* =========================
+           MUSIC CONTROL
+        ========================= */
+
+        musicButton.addEventListener(
+            "click",
+            function() {
+
+                if (song.paused) {
+
+                    song.play();
+
+                    musicButton.textContent =
+                        "🔇 STOP SONG";
+
+                } else {
+
+                    song.pause();
+
+                    musicButton.textContent =
+                        "🎵 PLAY SONG";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           CONFETTI
+        ========================= */
+
+        function createConfetti() {
+
+            for (
+                let i = 0;
+                i < 100;
+                i++
+            ) {
+
+                const piece =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                piece.className =
+                    "confetti";
+
+
+                piece.style.left =
+                    Math.random() * 100 +
+                    "vw";
+
+
+                piece.style.animationDelay =
+                    Math.random() * 2 +
+                    "s";
+
+
+                piece.style.background =
+                    `hsl(
+                        ${Math.random() * 360},
+                        100%,
+                        60%
+                    )`;
+
+
+                document.body.appendChild(
+                    piece
+                );
+
+
+                setTimeout(() => {
+
+                    piece.remove();
+
+                }, 5000);
+
+            }
+
+        }
+
+
+        /* =========================
+           RANDOM MESSAGES
+        ========================= */
+
+        const messages = [
+
+            "NOOOOO 😭",
+
+            "STOPPP 😭",
+
+            "WHY ARE YOU DOING THIS 💀",
+
+            "LEAVE THE BUTTON ALONE 😭",
+
+            "BROOOOO 💀",
+
+            "I'M WARNING YOU 😭",
+
+            "NOPE 😈"
+
+        ];
+
+
+        setInterval(() => {
+
+            const warning =
+                document.querySelector(
+                    ".warning"
+                );
+
+
+            warning.textContent =
+                messages[
+                    Math.floor(
+                        Math.random() *
+                        messages.length
+                    )
+                ];
+
+        }, 1800);
+
+
+    </script>
+
+</body>
     <style>
         * {
             box-sizing: border-box;
