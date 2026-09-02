@@ -1,1 +1,584 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOOOO 😭</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #050505;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Background glow */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, #ff005533, transparent 30%),
+                radial-gradient(circle at 80% 70%, #ff003333, transparent 30%);
+            pointer-events: none;
+        }
+
+        .container {
+            min-height: 100vh;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* NOOOO */
+        h1 {
+            font-size: clamp(70px, 16vw, 180px);
+            font-weight: 1000;
+            font-style: italic;
+            color: #ff1744;
+            text-shadow:
+                0 0 10px #ff1744,
+                0 0 30px #ff1744,
+                0 0 60px #ff1744;
+            animation: scream 0.8s infinite alternate;
+        }
+
+        @keyframes scream {
+            from {
+                transform: scale(1) rotate(-2deg);
+            }
+
+            to {
+                transform: scale(1.05) rotate(2deg);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 4vw, 30px);
+            margin-top: 10px;
+            color: #ddd;
+        }
+
+        .warning {
+            margin: 30px auto;
+            font-size: clamp(20px, 4vw, 34px);
+            font-weight: bold;
+            color: #ff4266;
+            text-shadow: 0 0 15px red;
+        }
+
+        /* Fake GIF */
+        .gif-box {
+            width: min(700px, 90vw);
+            height: 360px;
+            margin: 30px auto;
+            border: 3px solid #ff1744;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #111;
+            box-shadow:
+                0 0 20px #ff1744,
+                0 0 60px #ff174455;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            animation: shake 0.3s infinite alternate;
+        }
+
+        @keyframes shake {
+            from {
+                transform: translateX(-2px);
+            }
+
+            to {
+                transform: translateX(2px);
+            }
+        }
+
+        .cry {
+            font-size: 100px;
+            animation: cry 0.5s infinite alternate;
+        }
+
+        @keyframes cry {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-15px);
+            }
+        }
+
+        .gif-text {
+            font-size: clamp(30px, 6vw, 60px);
+            font-weight: 900;
+            color: white;
+            text-shadow: 4px 4px #ff1744;
+        }
+
+        /* Message box */
+        .message {
+            width: min(700px, 90vw);
+            margin: 35px auto;
+            padding: 25px;
+            border: 2px dashed #777;
+            border-radius: 20px;
+            background: #0c0c0c;
+        }
+
+        .message h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .message p {
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        /* Button area */
+        .button-area {
+            position: relative;
+            width: min(800px, 95vw);
+            height: 180px;
+            margin: 20px auto;
+            border: 2px dashed #555;
+            border-radius: 30px;
+        }
+
+        #prankButton {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            padding: 18px 35px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #ff1744,
+                #ff0066
+            );
+
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 15px #ff1744,
+                0 0 40px #ff174455;
+
+            transition: 0.15s;
+        }
+
+        #prankButton:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .attempts {
+            margin-top: 20px;
+            color: #777;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Popup */
+        #popup {
+            position: fixed;
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0, 0, 0, 0.85);
+
+            z-index: 999;
+        }
+
+        .popup-content {
+            width: min(450px, 90vw);
+            padding: 40px 25px;
+
+            background: #111;
+
+            border: 3px solid #ff1744;
+            border-radius: 20px;
+
+            box-shadow: 0 0 50px #ff1744;
+
+            animation: popupIn 0.3s;
+        }
+
+        @keyframes popupIn {
+            from {
+                transform: scale(0.3) rotate(-10deg);
+            }
+
+            to {
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .popup-content h2 {
+            font-size: 40px;
+            color: #ff1744;
+            margin-bottom: 15px;
+        }
+
+        .popup-content p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .close {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #ff1744;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 1000;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+            }
+        }
+
+        /* Screen shake */
+        .shake-screen {
+            animation: screenShake 0.4s;
+        }
+
+        @keyframes screenShake {
+            0% { transform: translate(0); }
+            20% { transform: translate(-10px, 8px); }
+            40% { transform: translate(10px, -8px); }
+            60% { transform: translate(-8px, -5px); }
+            80% { transform: translate(8px, 5px); }
+            100% { transform: translate(0); }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding-top: 30px;
+            }
+
+            .gif-box {
+                height: 280px;
+            }
+
+            .cry {
+                font-size: 70px;
+            }
+
+            .button-area {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>NOOOO 😭</h1>
+
+        <p class="subtitle">
+            I TOLD YOU NOT TO CLICK ANYTHING...
+        </p>
+
+        <div class="warning">
+            🚨 YOU CAN'T CLICK ME 🚨
+        </div>
+
+
+        <!-- Fake GIF / reaction -->
+        <div class="gif-box">
+
+            <div class="cry">
+                😭
+            </div>
+
+            <div class="gif-text">
+                NOOOOOOO!!!
+            </div>
+
+            <p style="margin-top:15px;color:#aaa;">
+                *dramatic crying intensifies*
+            </p>
+
+        </div>
+
+
+        <div class="message">
+
+            <h2>
+                👻 Why are you still trying?
+            </h2>
+
+            <p>
+                There is absolutely nothing interesting here.
+                <br>
+                Seriously. Go away. 😂
+            </p>
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button id="prankButton">
+                CLICK ME IF YOU DARE 😈
+            </button>
+
+        </div>
+
+        <div class="attempts">
+            Attempts: <span id="attemptCount">0</span>
+        </div>
+
+
+        <footer>
+            Made with ❤️ for maximum frustration 😈
+            <br><br>
+            This is just a prank website.
+        </footer>
+
+    </div>
+
+
+    <!-- Popup -->
+
+    <div id="popup">
+
+        <div class="popup-content">
+
+            <h2>
+                GOTCHA! 😂
+            </h2>
+
+            <p>
+                You actually thought that button would work?
+                <br><br>
+                NOOOOOOO 😭
+            </p>
+
+            <button class="close" onclick="closePopup()">
+                Okay... 😭
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const button = document.getElementById("prankButton");
+        const area = document.querySelector(".button-area");
+        const counter = document.getElementById("attemptCount");
+        const popup = document.getElementById("popup");
+
+        let attempts = 0;
+
+
+        function moveButton() {
+
+            attempts++;
+
+            counter.textContent = attempts;
+
+            const areaRect = area.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+
+            const maxX =
+                areaRect.width - buttonRect.width - 10;
+
+            const maxY =
+                areaRect.height - buttonRect.height - 10;
+
+            const x =
+                Math.max(
+                    10,
+                    Math.random() * maxX
+                );
+
+            const y =
+                Math.max(
+                    10,
+                    Math.random() * maxY
+                );
+
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+
+            button.style.transform = "none";
+
+            document.body.classList.add("shake-screen");
+
+            setTimeout(() => {
+                document.body.classList.remove("shake-screen");
+            }, 400);
+
+
+            // After many attempts...
+            if (attempts >= 7) {
+
+                button.textContent =
+                    "OKAY FINE 😭";
+
+                button.style.background =
+                    "linear-gradient(135deg,#7b1fa2,#e91e63)";
+            }
+
+        }
+
+
+        // Desktop
+        button.addEventListener("mouseenter", moveButton);
+
+
+        // Mobile
+        button.addEventListener("touchstart", function(e) {
+
+            e.preventDefault();
+
+            moveButton();
+
+        });
+
+
+        // If they somehow click it
+        button.addEventListener("click", function() {
+
+            attempts++;
+
+            counter.textContent = attempts;
+
+            showPopup();
+
+            createConfetti();
+
+        });
+
+
+        function showPopup() {
+
+            popup.style.display = "flex";
+
+        }
+
+
+        function closePopup() {
+
+            popup.style.display = "none";
+
+        }
+
+
+        function createConfetti() {
+
+            for (let i = 0; i < 100; i++) {
+
+                const piece =
+                    document.createElement("div");
+
+                piece.className = "confetti";
+
+                piece.style.left =
+                    Math.random() * 100 + "vw";
+
+                piece.style.animationDelay =
+                    Math.random() * 2 + "s";
+
+                piece.style.background =
+                    `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+                document.body.appendChild(piece);
+
+
+                setTimeout(() => {
+
+                    piece.remove();
+
+                }, 5000);
+
+            }
+
+        }
+
+
+        // Random "NOOO" messages
+        const messages = [
+            "NOOOOO 😭",
+            "STOPPP 😭",
+            "WHY ARE YOU DOING THIS 💀",
+            "LEAVE THE BUTTON ALONE 😭",
+            "BROOOOO 💀",
+            "I'M WARNING YOU 😭",
+            "NOPE 😈"
+        ];
+
+
+        setInterval(() => {
+
+            const warning =
+                document.querySelector(".warning");
+
+            warning.textContent =
+                messages[
+                    Math.floor(
+                        Math.random() * messages.length
+                    )
+                ];
+
+        }, 1800);
+
+    </script>
+
+</body>
+</html>
